@@ -1,0 +1,10 @@
+node_modules/
+dist/
+out/
+.next/
+*.gguf
+*.log
+.env
+.DS_Store
+services/**/bin/
+packages/proto/gen/

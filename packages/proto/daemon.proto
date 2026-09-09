@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package p2pai.daemon.v1;
+
+option go_package = "github.com/p2pai/p2pai/packages/proto/gen/go/daemon/v1;daemonv1";
+
+service Daemon {
+  rpc GetStatus(GetStatusRequest) returns (Status);
+  rpc SetContribution(SetContributionRequest) returns (Status);
+  rpc GetStats(GetStatsRequest) returns (Stats);
+  rpc Infer(InferRequest) returns (stream InferChunk);
+}
+
+message GetStatusRequest {}
+
+enum ContributionState {
+  CONTRIBUTION_STATE_UNSPECIFIED = 0;
+  CONTRIBUTION_STATE_ACTIVE = 1;
+  CONTRIBUTION_STATE_PAUSED_MANUAL = 2;
+  CONTRIBUTION_STATE_PAUSED_AUTO = 3;
+  CONTRIBUTION_STATE_STARTING = 4;
+}
+
+message Status {
+  ContributionState state = 1;
+  string peer_id = 2;
+  int32 connected_peers = 3;
+  string pause_reason = 4;
+  DeviceInfo device = 5;
+}
+
+message DeviceInfo {
+  string os = 1;
+  string arch = 2;
+  string gpu = 3;
+  int64 vram_bytes = 4;
+  int64 ram_bytes = 5;
+  int32 tier = 6;
+}
+
+message SetContributionRequest {
+  bool enabled = 1;
+}
+
+message GetStatsRequest {}
+
+message Stats {
+  int64 uptime_seconds = 1;
+  int64 tokens_processed = 2;
+  int64 requests_served = 3;
+}
+
+message InferRequest {
+  string model = 1;
+  string prompt = 2;
+  int32 max_tokens = 3;
+}
+
+message InferChunk {
+  string text = 1;
+  bool done = 2;
+  int32 latency_ms = 3;
+}
