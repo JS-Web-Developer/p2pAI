@@ -8,3 +8,9 @@ out/
 .DS_Store
 services/**/bin/
 packages/proto/gen/
+
+# spike fase0 artefatos
+spikes/fase0/llama.cpp/
+spikes/fase0/models/
+spikes/fase0/*.log
+spikes/fase0/bridge/bridge

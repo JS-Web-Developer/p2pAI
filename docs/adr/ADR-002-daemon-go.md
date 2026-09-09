@@ -7,7 +7,7 @@
 O PRD propõe Electron com subprocesso Python. Python exige empacotar interpretador e dependências (PyTorch, hivemind) por plataforma; bundle de centenas de MB e updates frágeis. O daemon precisa de libp2p, monitor de recursos, scheduler e ponte para o `rpc-server`.
 
 ## Decisão
-Daemon em Go, binário estático por plataforma, empacotado junto com o `rpc-server` do llama.cpp. Electron + React + Ant Design só para UI, comunicando com o daemon via gRPC em `localhost`.
+Daemon em Go, binário estático por plataforma, empacotado junto com o `rpc-server` do llama.cpp. Electron + React + Ant Design só para UI, comunicando com o daemon por HTTP/JSON em `localhost` (SSE para streaming). gRPC fica como opção futura; `packages/proto` documenta os tipos.
 
 ## Justificativa
 - `go-libp2p` é a implementação de referência: AutoNAT, Circuit Relay v2, DCUtR, QUIC prontos.

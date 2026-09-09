@@ -17,7 +17,7 @@ Complementa o PRD em `readme.md`. Preenche: correções de arquitetura, estrutur
 
 ```
 p2pai/
-  apps/desktop/          Electron + React + TypeScript + Ant Design. Só UI; fala com o daemon via gRPC local.
+  apps/desktop/          Electron + React + TypeScript + Ant Design. Só UI; fala com o daemon por HTTP/JSON local.
   apps/web/              Next.js: site, mapa global, placar.
   services/daemon/       Go: host libp2p, scheduler de recursos, ponte para llama.cpp rpc-server.
   services/coordinator/  Go: bootstrap + relay + API de stats/créditos (Postgres).
@@ -98,6 +98,6 @@ Fora do MVP: mapa, placar, créditos, prioridade, votação, emblemas, API públ
 
 ## 8. Primeiros passos
 
-1. Instalar toolchain: Go 1.22+, Node 20+, pnpm, llama.cpp (`brew install llama.cpp`).
-2. Rodar spike da Fase 0 (`spikes/fase0/README.md`).
+1. Toolchain: Go, cmake instalados via Homebrew. Node 20+ e pnpm ficam para a UI.
+2. Compilar: `make all` (Go) e `make llama` (llama.cpp com RPC). Rodar spike da Fase 0 (`spikes/fase0/README.md`).
 3. Registrar resultados em `docs/adr/ADR-003-resultado-spike.md`.
